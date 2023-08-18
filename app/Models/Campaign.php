@@ -19,5 +19,12 @@ class Campaign extends Model
         'start_date'
     ];
 
+    public function scopeFindActiveCampaigns($query)
+    {
+        return $query->where('status', 'active')
+            ->where('type', '!=', 'rvm')
+            ->orderBy('order', 'desc')
+            ->limit(10);
+    }
 }
 
